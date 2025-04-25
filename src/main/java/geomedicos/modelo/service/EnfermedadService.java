@@ -9,6 +9,7 @@ public interface EnfermedadService extends IntGenericoService<Enfermedad, Intege
 	 
 	List<Enfermedad> findByTratamiento(int idTratamiento);
 	List<Enfermedad> findByNombre(String cadena);
+	List<Enfermedad> findByIdEspecialidad(int idEspecialidad);
 	
 	 
 	

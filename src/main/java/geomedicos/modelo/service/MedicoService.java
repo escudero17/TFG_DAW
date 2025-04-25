@@ -4,7 +4,7 @@ import java.util.List;
 
 import geomedicos.modelo.entities.Medico;
 
-public interface MedicoService {
+public interface MedicoService extends IntGenericoService<Medico, String>{
 	
 	Medico buscarPorColegiado(String colegiado);
 	List<Medico> buscarPorEspecialidad(int idEspecialidad);

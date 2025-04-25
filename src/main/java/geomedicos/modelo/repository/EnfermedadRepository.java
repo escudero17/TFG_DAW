@@ -11,5 +11,6 @@ public interface EnfermedadRepository extends JpaRepository<Enfermedad, Integer>
 	
 	public List<Enfermedad> findByTratamientoIdTratamiento(int idTratamiento);
 	public List<Enfermedad> findByNombreContainingOrderByNombre(String cadena);
+	List<Enfermedad> findByTratamientoEspecialidadIdEspecialidad(int idEspecialidad);
 
 }

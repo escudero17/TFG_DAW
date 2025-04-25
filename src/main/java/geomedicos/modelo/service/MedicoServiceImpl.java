@@ -37,4 +37,34 @@ public class MedicoServiceImpl implements MedicoService{
 		return mrepo.findByUsuarioIdUsuario(idUsuario);
 	}
 
+	@Override
+	public List<Medico> findAll() {
+		// TODO Auto-generated method stub
+		return mrepo.findAll();
+	}
+
+	@Override
+	public Medico findById(String claveId) {
+		// TODO Auto-generated method stub
+		return mrepo.findById(claveId).orElse(null);
+	}
+
+	@Override
+	public Medico insertOne(Medico entity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int updateOne(Medico entity) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int deleteOne(String claveId) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }
