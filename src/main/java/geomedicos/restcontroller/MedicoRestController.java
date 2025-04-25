@@ -20,6 +20,13 @@ public class MedicoRestController {
 	@Autowired
 	private MedicoService mserv;
 	
+	@GetMapping("/especialidad/{idEspecialidad}")
+	public ResponseEntity<?> uno(@PathVariable int idEspecialidad) {
+	//	ResponseEntity.status(200).body(MedicoDto.convertToMedicoDto(medico));
+		return ResponseEntity.status(200).body(mserv.buscarPorEspecialidad(idEspecialidad));
+		
+	}
+	
 	@GetMapping("/detalle/{colegiado}")
 	public ResponseEntity<?> uno(@PathVariable String colegiado) {
 		Medico medico = mserv.buscarPorColegiado(colegiado);
