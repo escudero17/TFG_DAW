@@ -67,7 +67,7 @@ CREATE TABLE clinica_especialidad (
 CREATE TABLE horarios_medicos (
     id_horario INT PRIMARY KEY AUTO_INCREMENT,
      COLEGIADO VARCHAR(15) NOT NULL,
-    dia_semana ENUM('LUNES', 'MARTES', 'MIERCOLES', 'JUEVES', 'VIERNES', 'SABADO', 'DOMINGO') NOT NULL,
+    fecha_cita date not null,
     hora_inicio TIME NOT NULL,
     id_clinica INT NULL,
     FOREIGN KEY (COLEGIADO) REFERENCES medicos(COLEGIADO),
