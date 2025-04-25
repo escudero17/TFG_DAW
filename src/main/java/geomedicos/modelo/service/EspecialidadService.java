@@ -7,5 +7,6 @@ import geomedicos.modelo.entities.Especialidad;
 public interface EspecialidadService extends IntGenericoService<Especialidad, Integer>{
 	
 	List<Especialidad> findByNombre(String cadena);
+	Especialidad findById(int idEspecialidad);
 
 }

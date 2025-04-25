@@ -1,5 +1,5 @@
 package geomedicos.modelo.service;
-
+import jakarta.persistence.EntityNotFoundException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,4 +50,9 @@ public class EspecialidadServiceImpl implements EspecialidadService{
 		return erepo.findByNombreContainingOrderByNombre(cadena);
 	}
 
+	@Override
+	public Especialidad findById(int id) {
+    	return erepo.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Especialidad no encontrada con id: " + id));
+}
 }

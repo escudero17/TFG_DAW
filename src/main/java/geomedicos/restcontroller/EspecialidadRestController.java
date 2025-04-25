@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 @RestController
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/especialidades")
 public class EspecialidadRestController {
 	
@@ -33,6 +33,11 @@ public class EspecialidadRestController {
 	public ResponseEntity<List<Especialidad>> nombre(@PathVariable String cadena) {
 		 return ResponseEntity.ok(eserv.findByNombre(cadena));
 	}
+
+	@GetMapping("/{id}")
+	public ResponseEntity<Especialidad> obtenerPorId(@PathVariable int id) {
+    	return ResponseEntity.ok(eserv.findById(id));
+}
 	
 
 }

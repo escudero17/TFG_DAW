@@ -16,7 +16,7 @@ import geomedicos.modelo.service.ClinicaService;
 
 
 @RestController
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/clinicas")
 public class ClinicaRestController {
 	@Autowired
@@ -45,5 +45,10 @@ public class ClinicaRestController {
 		return ResponseEntity.ok(cserv.findById(idClinica));
 		
 	}
+
+	@GetMapping("/todas")
+    public ResponseEntity<List<Clinica>> todas() {
+        return ResponseEntity.ok(cserv.findAll());
+    }
 
 }

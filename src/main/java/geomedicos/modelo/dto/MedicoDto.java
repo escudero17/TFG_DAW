@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.ui.ModelMap;
-
+import java.util.stream.Collectors;
 import geomedicos.modelo.entities.Clinica;
 import geomedicos.modelo.entities.Especialidad;
 import geomedicos.modelo.entities.Medico;
@@ -58,7 +58,11 @@ public class MedicoDto {
 		return mdto;
 		
 	}
-	
+	public static List<MedicoDto> convertList(List<Medico> medicos) {
+    return medicos.stream()
+                  .map(MedicoDto::convertToMedicoDto)
+                  .collect(Collectors.toList());
+}
 	
 
 }

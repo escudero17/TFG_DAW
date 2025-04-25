@@ -54,10 +54,9 @@ public class EnfermedadServiceImpl implements EnfermedadService{
 		// TODO Auto-generated method stub
 		return erepo.findByNombreContainingOrderByNombre(cadena);
 	}
-	
-	
-	
-	
-	
-
+	@Override
+	public List<Enfermedad> findByIdEspecialidad(int idEspecialidad) {
+    	return erepo.findByTratamientoEspecialidadIdEspecialidad(idEspecialidad);
 }
+}
+

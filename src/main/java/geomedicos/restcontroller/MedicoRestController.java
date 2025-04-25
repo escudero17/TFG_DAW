@@ -11,9 +11,10 @@ import org.springframework.web.bind.annotation.RestController;
 import geomedicos.modelo.dto.MedicoDto;
 import geomedicos.modelo.entities.Medico;
 import geomedicos.modelo.service.MedicoService;
+import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/medico")
 public class MedicoRestController {
 	
@@ -30,7 +31,19 @@ public class MedicoRestController {
 			return ResponseEntity.status(404).body(null);
 	}
 	
-	
+	 
+    @GetMapping("/especialidad/{idEspecialidad}")
+    public ResponseEntity<List<MedicoDto>> medicosPorEspecialidad(@PathVariable int idEspecialidad) {
+        List<Medico> lista = mserv.findByEspecialidad(idEspecialidad);
+        return ResponseEntity.ok(MedicoDto.convertList(lista));
+    }
+
+    
+    @GetMapping("/todos")
+    public ResponseEntity<List<MedicoDto>> todos() {
+        List<Medico> lista = mserv.findAll();
+        return ResponseEntity.ok(MedicoDto.convertList(lista));
+    }
 	
 	
 
