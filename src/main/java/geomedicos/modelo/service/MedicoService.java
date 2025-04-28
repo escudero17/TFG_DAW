@@ -1,12 +1,15 @@
 package geomedicos.modelo.service;
 
-import geomedicos.modelo.entities.Medico;
 import java.util.List;
-public interface MedicoService {
+
+import geomedicos.modelo.entities.Medico;
+
+public interface MedicoService extends IntGenericoService<Medico, String>{
 	
 	Medico buscarPorColegiado(String colegiado);
-	public List<Medico> findByEspecialidad(int idEspecialidad);
-	List<Medico> findAll();
-
+	List<Medico> buscarPorEspecialidad(int idEspecialidad);
+	Medico buscarPorCorreo(String correo);
+	Medico buscarPorIdUsuario(int idUsuario);
+	
 
 }

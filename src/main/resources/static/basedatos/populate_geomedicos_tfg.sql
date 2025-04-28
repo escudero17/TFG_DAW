@@ -153,14 +153,15 @@ INSERT INTO `medico_tratamientos` (`colegiado`,`id_tratamiento`) VALUES ('111111
 INSERT INTO `medico_tratamientos` (`colegiado`,`id_tratamiento`) VALUES ('11111112A',13);
 
 -- HORARIOS_MEDICOS
-INSERT INTO `geomedicos_tfg`.`horarios_medicos` (`id_horario`, `COLEGIADO`, `dia_semana`, `hora_inicio`, `id_clinica`) VALUES ('1', '11111111A', 'lunes', '9:00', '1');
-INSERT INTO `geomedicos_tfg`.`horarios_medicos` (`id_horario`, `COLEGIADO`, `dia_semana`, `hora_inicio`, `id_clinica`) VALUES ('2', '11111111A', 'lunes', '10:00', '1');
-INSERT INTO `geomedicos_tfg`.`horarios_medicos` (`id_horario`, `COLEGIADO`, `dia_semana`, `hora_inicio`, `id_clinica`) VALUES ('3', '11111111A', 'lunes', '11:00', '1');
-INSERT INTO `geomedicos_tfg`.`horarios_medicos` (`id_horario`, `COLEGIADO`, `dia_semana`, `hora_inicio`, `id_clinica`) VALUES ('4', '11111111A', 'lunes', '12:00', '1');
+INSERT INTO `geomedicos_tfg`.`horarios_medicos` (`id_horario`, `COLEGIADO`, `fecha_cita`, `hora_inicio`, `id_clinica`) VALUES (1, '11111111A', '2025-06-05', '9:00', '1');
+INSERT INTO `geomedicos_tfg`.`horarios_medicos` (`id_horario`, `COLEGIADO`, `fecha_cita`, `hora_inicio`, `id_clinica`) VALUES (2, '11111111A', '2025-06-05', '10:00', '1');
+INSERT INTO `geomedicos_tfg`.`horarios_medicos` (`id_horario`, `COLEGIADO`, `fecha_cita`, `hora_inicio`, `id_clinica`) VALUES (3, '11111111A', '2025-06-05', '11:00', '1');
+INSERT INTO `geomedicos_tfg`.`horarios_medicos` (`id_horario`, `COLEGIADO`, `fecha_cita`, `hora_inicio`, `id_clinica`) VALUES (4, '11111111A', '2025-06-05', '12:00', '1');
 
 -- CITAS
-INSERT INTO `geomedicos_tfg`.`citas` (`id_cita`, `id_paciente`, `id_horario`, `fecha`, `estado`) VALUES ('1', '3', '1', '2025-06-30', 'CONFIRMADA');
-INSERT INTO `geomedicos_tfg`.`citas` (`id_cita`, `id_paciente`, `id_horario`, `fecha`, `estado`) VALUES ('2', '5', '3', '2025-05-05', 'CONFIRMADA');
+INSERT INTO `geomedicos_tfg`.`citas` (`id_cita`, `id_paciente`, `id_horario`, `fecha`, `estado`) VALUES (1, '3', '1', '2025-05-02', 'PENDIENTE');
+INSERT INTO `geomedicos_tfg`.`citas` (`id_cita`, `id_paciente`, `id_horario`, `fecha`, `estado`) VALUES (2, '5', '3', '2025-04-05', 'CONFIRMADA');
+
 
 -- enfermedades
 INSERT INTO enfermedades (nombre, id_tratamiento) VALUES

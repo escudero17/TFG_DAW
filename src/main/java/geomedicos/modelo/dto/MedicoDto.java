@@ -7,6 +7,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.ui.ModelMap;
 import java.util.stream.Collectors;
 import geomedicos.modelo.entities.Clinica;
+import geomedicos.modelo.entities.Enfermedad;
 import geomedicos.modelo.entities.Especialidad;
 import geomedicos.modelo.entities.Medico;
 import geomedicos.modelo.enumerados.Genero;
@@ -27,9 +28,10 @@ public class MedicoDto {
 	private String nombre;
 	private String apellidos;
 	private Genero genero;
-	private String email;
+	private String correo;
 	private String imagen;
 	private String telefono;
+	private String role;
 	private double tarifa;
 	private LocalDate fechaNacimiento;
 	private EspecialidadDto especialidad;
@@ -42,8 +44,9 @@ public class MedicoDto {
 		MedicoDto mdto = model.map(medico, MedicoDto.class);
 		mdto.setApellidos(medico.getUsuario().getApellidos());
 		mdto.setNombre(medico.getUsuario().getNombre());
-		mdto.setEmail(medico.getUsuario().getCorreo());
+		mdto.setCorreo(medico.getUsuario().getCorreo());
 		mdto.setTelefono(medico.getUsuario().getTelefono());
+		mdto.setRole(medico.getUsuario().getRole());
 		
 		mdto.setFechaNacimiento(medico.getUsuario().getFechaNacimiento());
 		mdto.setGenero(medico.getUsuario().getGenero());
@@ -58,11 +61,13 @@ public class MedicoDto {
 		return mdto;
 		
 	}
-	public static List<MedicoDto> convertList(List<Medico> medicos) {
-    return medicos.stream()
-                  .map(MedicoDto::convertToMedicoDto)
-                  .collect(Collectors.toList());
-}
 	
+	public static List<MedicoDto> convertList(List<Medico> medicos) {
+		
+		return medicos.stream()
+				.map(ele -> MedicoDto.convertToMedicoDto(ele))
+				.toList();
+		
+	}
 
 }

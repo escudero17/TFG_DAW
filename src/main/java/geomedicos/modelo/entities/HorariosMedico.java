@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,9 +39,9 @@ public class HorariosMedico implements Serializable {
 	@JoinColumn(name="colegiado")
 	private Medico medico;
 
-	@Column(name="dia_semana")
-	@Enumerated(EnumType.STRING)
-	private DiaSemana diaSemana;
+	@Column(name="fecha_cita")
+	@Temporal(TemporalType.DATE)
+	private LocalDate fechaCita;
 
 	@Column(name="hora_inicio")
 	@Temporal(TemporalType.TIME)

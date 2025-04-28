@@ -22,6 +22,15 @@ public class EnfermedadRestController {
 	@Autowired
 	private EnfermedadService eserv;
 	
+	@GetMapping("/especialidad/{idEspecialidad}")
+	
+	public ResponseEntity<List<EnfermedadDto>> especialidad(@PathVariable int idEspecialidad){
+		
+		return ResponseEntity.ok(EnfermedadDto.convertList(eserv.findByIdEspecialidad(idEspecialidad)));
+		
+	}
+	
+	
 	@GetMapping("/nombre/{cadena}")
 	
 	public ResponseEntity<List<EnfermedadDto>> nombre(@PathVariable String cadena){

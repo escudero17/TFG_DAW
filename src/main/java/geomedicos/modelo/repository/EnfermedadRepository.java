@@ -13,8 +13,4 @@ public interface EnfermedadRepository extends JpaRepository<Enfermedad, Integer>
 	public List<Enfermedad> findByNombreContainingOrderByNombre(String cadena);
 	List<Enfermedad> findByTratamientoEspecialidadIdEspecialidad(int idEspecialidad);
 
-
-    // @Query("SELECT e FROM Enfermedad e WHERE LOWER(e.nombre) LIKE LOWER(CONCAT('%', :nombre, '%'))")
-    // List<Enfermedad> findByNombre(@Param("nombre") String nombre);
-
 }

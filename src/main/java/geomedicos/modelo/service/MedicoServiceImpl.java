@@ -1,5 +1,7 @@
 package geomedicos.modelo.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -18,13 +20,51 @@ public class MedicoServiceImpl implements MedicoService{
 	}
 
 	@Override
-	public List<Medico> findByEspecialidad(int idEspecialidad) {
-    	return mrepo.findByEspecialidadIdEspecialidad(idEspecialidad);
+	public List<Medico> buscarPorEspecialidad(int idEspecialidad) {
+		// TODO Auto-generated method stub
+		return mrepo.findByEspecialidadIdEspecialidad(idEspecialidad);
+	}
+
+	@Override
+	public Medico buscarPorCorreo(String correo) {
+		// TODO Auto-generated method stub
+		return mrepo.findByUsuarioCorreo(correo);
+	}
+
+	@Override
+	public Medico buscarPorIdUsuario(int idUsuario) {
+		// TODO Auto-generated method stub
+		return mrepo.findByUsuarioIdUsuario(idUsuario);
 	}
 
 	@Override
 	public List<Medico> findAll() {
-   	 return mrepo.findAll();
+		// TODO Auto-generated method stub
+		return mrepo.findAll();
+	}
+
+	@Override
+	public Medico findById(String claveId) {
+		// TODO Auto-generated method stub
+		return mrepo.findById(claveId).orElse(null);
+	}
+
+	@Override
+	public Medico insertOne(Medico entity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int updateOne(Medico entity) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int deleteOne(String claveId) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }
