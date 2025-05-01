@@ -69,6 +69,7 @@ CREATE TABLE horarios_medicos (
      COLEGIADO VARCHAR(15) NOT NULL,
     fecha_cita date not null,
     hora_inicio TIME NOT NULL,
+    estado ENUM('PENDIENTE', 'CONFIRMADA', 'CANCELADA') NOT NULL DEFAULT 'PENDIENTE',
     id_clinica INT NULL,
     FOREIGN KEY (COLEGIADO) REFERENCES medicos(COLEGIADO),
     FOREIGN KEY (id_clinica) REFERENCES clinicas(id_clinica)
@@ -79,7 +80,6 @@ CREATE TABLE citas (
     id_paciente INT,
     id_horario INT,
     fecha DATE NOT NULL,
-    estado ENUM('PENDIENTE', 'CONFIRMADA', 'CANCELADA') NOT NULL DEFAULT 'PENDIENTE',
     FOREIGN KEY (id_paciente) REFERENCES usuarios(id_usuario),
     FOREIGN KEY (id_horario) REFERENCES horarios_medicos(id_horario)
     

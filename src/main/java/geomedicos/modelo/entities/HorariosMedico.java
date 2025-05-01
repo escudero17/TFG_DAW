@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import geomedicos.modelo.enumerados.DiaSemana;
+import geomedicos.modelo.enumerados.EstadoCita;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -46,6 +47,9 @@ public class HorariosMedico implements Serializable {
 	@Column(name="hora_inicio")
 	@Temporal(TemporalType.TIME)
 	private LocalTime horaInicio;
+	
+	@Enumerated(EnumType.STRING)
+	private EstadoCita estado;
 
 	
 
