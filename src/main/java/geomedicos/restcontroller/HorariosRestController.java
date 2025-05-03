@@ -1,18 +1,16 @@
 package geomedicos.restcontroller;
 
 import geomedicos.modelo.entities.HorariosMedico;
-import geomedicos.modelo.entities.Medico;
 import geomedicos.modelo.service.HorariosMedicoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.stream.Collectors;
+
 
 @RestController
-@RequestMapping("/horarios-medico")
+@RequestMapping("api/horarios-medico")
 @CrossOrigin(origins = "http://localhost:4200")
 public class HorariosRestController {
 

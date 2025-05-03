@@ -14,19 +14,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import geomedicos.modelo.dto.CitaDto;
-import geomedicos.modelo.dto.HorarioMedicoDto;
 import geomedicos.modelo.entities.Cita;
 import geomedicos.modelo.entities.HorariosMedico;
 import geomedicos.modelo.enumerados.EstadoCita;
-import geomedicos.modelo.repository.CitaRepository;
-import geomedicos.modelo.repository.HorariosMedicoRepository;
 import geomedicos.modelo.service.CitaService;
 import geomedicos.modelo.service.HorariosMedicoService;
 import geomedicos.modelo.service.UsuarioService;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/paciente")
+@RequestMapping("api/paciente")
 public class PacienteRestController {
 	
 	@Autowired
@@ -38,6 +35,7 @@ public class PacienteRestController {
 	
 	@GetMapping("/miscitas/{idUsuario}")
 	public ResponseEntity<?> misCitas(@PathVariable int idUsuario){
+		System.out.println("Entrando a /miscitas/" + idUsuario);
 		return ResponseEntity.status(200).body(CitaDto.convertList(cserv.buscarCitasPorPaciente(idUsuario)));
 	}
 	
