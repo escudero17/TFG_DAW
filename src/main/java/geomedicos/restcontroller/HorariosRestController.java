@@ -28,19 +28,10 @@ public class HorariosRestController {
     }
 
     @GetMapping("/disponibles")
-    public List<Medico> getMedicosDisponibles(
-            @RequestParam("especialidadId") int especialidadId,
-            @RequestParam("fecha") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fecha) {
+    public List<HorariosMedico> getMedicosDisponibles(@RequestParam int especialidadId,@RequestParam String fecha) {
+        LocalDate f = LocalDate.parse(fecha);
+         return horariosMedicoService.medicosDisponibles(especialidadId, f);
     
-        List<HorariosMedico> horarios = horariosMedicoService.citasConFechamayorQue(fecha);
-    
-        return horarios.stream()
-                .map(HorariosMedico::getMedico)
-                .filter(medico -> medico.getEspecialidad() != null && medico.getEspecialidad().getIdEspecialidad() == especialidadId)
-                .distinct()
-                .collect(Collectors.toList());
     }
-    
-    
 }
 

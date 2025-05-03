@@ -43,27 +43,23 @@ public class PacienteRestController {
 	
 	
 	@PostMapping("/miscitas/alta")
-	public ResponseEntity<?> altaCita(@RequestBody CitaDto citadto){
-		
-			Cita cita = new Cita();
-			HorariosMedico horario = mserv.findById(citadto.getIdHorario());
-			cita.setFecha(LocalDate.now());
-			cita.setHorariosMedico(horario);
-			cita.setPaciente(userv.findById(citadto.getIdUsuario()));
-			horario.setEstado(EstadoCita.CONFIRMADA);
-			
-			
-			
-			if (cserv.insertOne(cita) != null) {
-				citadto.setIdCita(cita.getIdCita());
-				mserv.updateOne(horario);
-				return ResponseEntity.status(201).body(citadto);
-			}
-				
-			else
-				return ResponseEntity.status(409).body(null);
-		
-		
+	public ResponseEntity<?> altaCita(@RequestBody CitaDto citadto) {
+	
+		Cita cita = new Cita();
+		HorariosMedico horario = mserv.findById(citadto.getIdHorario());
+		cita.setFecha(LocalDate.now());
+		cita.setHorariosMedico(horario);
+		cita.setPaciente(userv.findById(citadto.getIdUsuario()));
+		horario.setEstado(EstadoCita.CONFIRMADA);
+	
+		if (cserv.insertOne(cita) != null) {
+			citadto.setIdCita(cita.getIdCita());
+			citadto.setIdUsuario(cita.getPaciente().getIdUsuario()); // ✅ esta línea soluciona el problema
+			mserv.updateOne(horario);
+			return ResponseEntity.status(201).body(citadto);
+		} else {
+			return ResponseEntity.status(409).body(null);
+		}
 	}
 	
 	@DeleteMapping("/miscitas/eliminar/{idCita}")
