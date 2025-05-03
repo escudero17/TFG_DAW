@@ -36,8 +36,7 @@ public class Cita implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_cita")
 	private int idCita;
-	@Enumerated(EnumType.STRING)
-	private EstadoCita estado;
+	
 
 	@Temporal(TemporalType.DATE)
 	private LocalDate fecha;
@@ -50,7 +49,7 @@ public class Cita implements Serializable {
 	//bi-directional many-to-one association to Usuario
 	@ManyToOne
 	@JoinColumn(name="id_paciente")
-	private Usuario usuario;
+	private Usuario paciente;
 
 	
 

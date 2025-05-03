@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import geomedicos.modelo.entities.HorariosMedico;
+import geomedicos.modelo.enumerados.EstadoCita;
 import geomedicos.modelo.repository.HorariosMedicoRepository;
 @Service
 public class HorariosMedicoServiceImpl implements HorariosMedicoService{
@@ -69,6 +70,12 @@ public class HorariosMedicoServiceImpl implements HorariosMedicoService{
 	public List<HorariosMedico> citasConFechamayorQue(LocalDate fechaInicio) {
 		// TODO Auto-generated method stub
 		return hrepo.findByFechaCitaGreaterThan( fechaInicio);
+	}
+
+	@Override
+	public List<HorariosMedico> getMedicosDisponiblesPorEspecialidadYFecha(int idEspecialidad, LocalDate fecha) {
+		// TODO Auto-generated method stub
+		return hrepo.findByMedicoEspecialidadIdEspecialidadAndFechaCitaGreaterThanAndEstado(idEspecialidad, fecha, EstadoCita.PENDIENTE);
 	}
 
 }

@@ -1,10 +1,10 @@
 package geomedicos.modelo.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.util.List;
 import geomedicos.modelo.entities.Medico;
 import geomedicos.modelo.repository.MedicoRepository;
 
@@ -65,6 +65,12 @@ public class MedicoServiceImpl implements MedicoService{
 	public int deleteOne(String claveId) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public List<Medico> buscarDisponiblesPorEspecialidadYFecha(int idEspecialidad, LocalDate fecha) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
