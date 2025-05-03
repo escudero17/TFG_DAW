@@ -13,7 +13,6 @@ public interface MedicoRepository extends JpaRepository<Medico, String>{
 	public Medico findByUsuarioCorreo(String correo);
 	
 
-   List<Medico> findByEspecialidadIdEspecialidad(int idEspecialidad);
 
 
 }

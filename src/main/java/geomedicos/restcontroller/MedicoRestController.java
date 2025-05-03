@@ -76,7 +76,12 @@ public class MedicoRestController {
 		else
 			return ResponseEntity.status(409).body(null);
 	}
+
 	
+    @GetMapping("/todos")
+    public List<Medico> getMedicos() {
+        return mserv.findAll();
+    }
 	
 
 }

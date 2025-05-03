@@ -9,6 +9,6 @@ import geomedicos.modelo.entities.HorariosMedico;
 
 public interface HorariosMedicoRepository extends JpaRepository<HorariosMedico, Integer>{
 	
-	public List<HorariosMedico> findByMedicoColegiadoAndFechaCitaGreaterThan(String colegiado, LocalDate fechaInicio);
+	public List<HorariosMedico> findByFechaCitaGreaterThan(LocalDate fechaInicio);
 
 }

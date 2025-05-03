@@ -67,5 +67,5 @@ public class EnfermedadServiceImpl implements EnfermedadService{
 	
 
 }
-}
+
 

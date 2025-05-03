@@ -63,9 +63,5 @@ public class EnfermedadRestController {
 		
 	}
 	
-@GetMapping("/especialidad/{idEspecialidad}")
-public ResponseEntity<List<EnfermedadDto>> enfermedadesPorEspecialidad(@PathVariable int idEspecialidad) {
-    List<Enfermedad> lista = eserv.findByIdEspecialidad(idEspecialidad);
-    return ResponseEntity.ok(EnfermedadDto.convertList(lista));
-}
+
 }

@@ -7,6 +7,6 @@ import geomedicos.modelo.entities.HorariosMedico;
 
 public interface HorariosMedicoService extends IntGenericoService<HorariosMedico, Integer>{
 	
-	List<HorariosMedico> citasConFechamayorQue(String colegiado, LocalDate fechaInicio);
+	List<HorariosMedico> citasConFechamayorQue( LocalDate fechaInicio);
 
 }
