@@ -45,7 +45,7 @@ public class PacienteRestController {
 	
 		Cita cita = new Cita();
 		HorariosMedico horario = mserv.findById(citadto.getIdHorario());
-		cita.setFecha(LocalDate.now());
+		cita.setFecha(citadto.getFecha());
 		cita.setHorariosMedico(horario);
 		cita.setPaciente(userv.findById(citadto.getIdUsuario()));
 		horario.setEstado(EstadoCita.CONFIRMADA);
