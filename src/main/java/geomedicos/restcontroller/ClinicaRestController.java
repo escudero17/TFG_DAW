@@ -30,6 +30,14 @@ public class ClinicaRestController {
 		
 	}
 	
+	@GetMapping("/todas")
+	
+	public ResponseEntity<List<Clinica>> todas(){
+		
+		return ResponseEntity.ok(cserv.findAll());
+		
+	}
+	
 	@GetMapping("/ciudad/{ciudad}")
 	
 	public ResponseEntity<List<Clinica>> nombre(@PathVariable String ciudad){

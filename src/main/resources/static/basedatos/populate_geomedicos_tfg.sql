@@ -5,12 +5,33 @@ LIMIT 0, 400
 -- Date: 2025-03-30 13:55
 */
 use geomedicos_tfg;
--- USUARIOS
-INSERT INTO `usuarios` (`id_usuario`,`nombre`,`APELLIDOS`,`genero`,`correo`,`telefono`,`fecha_nacimiento`,`FECHA_ALTA`,`password`,`ENABLED`,`ROLE`) VALUES (1,'Antonio','García Ortiz','H','agarcia@top.com','654321987','1980-03-21','2019-01-15','12345',1,'ADMON');
-INSERT INTO `usuarios` (`id_usuario`,`nombre`,`APELLIDOS`,`genero`,`correo`,`telefono`,`fecha_nacimiento`,`FECHA_ALTA`,`password`,`ENABLED`,`ROLE`) VALUES (2,'Carlos','Ortuño Pérez','H','cortuño@gmail.com','698365365','1975-04-15','2024-12-07','12345',1,'DOCTOR');
-INSERT INTO `usuarios` (`id_usuario`,`nombre`,`APELLIDOS`,`genero`,`correo`,`telefono`,`fecha_nacimiento`,`FECHA_ALTA`,`password`,`ENABLED`,`ROLE`) VALUES (3,'Eva','Barrena Pariente','M','ebarrena@gmail.com','611235658','1965-06-25','2024-12-23','12345',1,'PACIENTE');
-INSERT INTO `usuarios` (`id_usuario`,`nombre`,`APELLIDOS`,`genero`,`correo`,`telefono`,`fecha_nacimiento`,`FECHA_ALTA`,`password`,`ENABLED`,`ROLE`) VALUES (4,'Almudena','Sarmiento Parra','M','asarmiento@gmail.com','642642642','1968-11-22','2023-07-07','12345',1,'DOCTOR');
-INSERT INTO `usuarios` (`id_usuario`,`nombre`,`APELLIDOS`,`genero`,`correo`,`telefono`,`fecha_nacimiento`,`FECHA_ALTA`,`password`,`ENABLED`,`ROLE`) VALUES (5,'Andrés','Ortega Santos','H','aortega@gmail.com','684684684','1955-10-14','2024-11-19','12345',1,'PACIENTE');
+-- USUARIOS ADMON SOLO 1
+INSERT INTO `usuarios` (`id_usuario`,`nombre`,`APELLIDOS`,`genero`,`correo`,`telefono`,`fecha_nacimiento`,`FECHA_ALTA`,`password`,`ENABLED`,`ROLE`) 
+VALUES (1,'Antonio','García Ortiz','H','agarcia@top.com','654321987','1980-03-21','2019-01-15','12345',1,'ADMON');
+
+-- USUARIOS DOCTORES
+
+INSERT INTO `usuarios` (`id_usuario`, `nombre`, `APELLIDOS`, `genero`, `correo`, `telefono`, `fecha_nacimiento`, `FECHA_ALTA`, `password`, `ENABLED`, `ROLE`) 
+VALUES 
+(2,'Carlos','Ortuño Pérez','H','cortuño@gmail.com','698365365','1975-04-15','2024-12-07','12345',1,'DOCTOR'),
+(3, 'Carlos', 'Martínez López', 'H', 'cmartinez@gmail.com', '612345678', '1975-05-14', '2023-08-01', '12345', 1, 'DOCTOR'),
+(4, 'Elena', 'Gómez Ruiz', 'M', 'egomez@gmail.com', '623456789', '1982-03-09', '2023-08-02', '12345', 1, 'DOCTOR'),
+(5, 'Luis', 'Fernández Soto', 'H', 'lfernandez@gmail.com', '634567890', '1990-12-25', '2023-08-03', '12345', 1, 'DOCTOR'),
+(6, 'María', 'Torres Díaz', 'M', 'mtorres@gmail.com', '645678901', '1987-07-30', '2023-08-04', '12345', 1, 'DOCTOR'),
+(7, 'Javier', 'Ramírez Cano', 'H', 'jramirez@gmail.com', '656789012', '1978-10-18', '2023-08-05', '12345', 1, 'DOCTOR'),
+(8,'Almudena','Sarmiento Parra','M','asarmiento@gmail.com','642642642','1968-11-22','2023-07-07','12345',1,'DOCTOR');
+
+-- USUARIOS PACIENTES
+
+INSERT INTO `usuarios` (`id_usuario`,`nombre`,`APELLIDOS`,`genero`,`correo`,`telefono`,`fecha_nacimiento`,`FECHA_ALTA`,`password`,`ENABLED`,`ROLE`) 
+VALUES (9,'Eva','Barrena Pariente','M','ebarrena@gmail.com','611235658','1965-06-25','2024-12-23','12345',1,'PACIENTE');
+INSERT INTO `usuarios` (`id_usuario`,`nombre`,`APELLIDOS`,`genero`,`correo`,`telefono`,`fecha_nacimiento`,`FECHA_ALTA`,`password`,`ENABLED`,`ROLE`) 
+VALUES (10,'Almudena','Rodriguez Esteban','M','arodriguez@gmail.com','642642642','1968-11-22','2023-07-07','12345',1,'DOCTOR');
+INSERT INTO `usuarios` (`id_usuario`,`nombre`,`APELLIDOS`,`genero`,`correo`,`telefono`,`fecha_nacimiento`,`FECHA_ALTA`,`password`,`ENABLED`,`ROLE`) 
+VALUES (11,'Andrés','Ortega Santos','H','aortega@gmail.com','684684684','1955-10-14','2024-11-19','12345',1,'PACIENTE');
+
+
+
 
 -- ESPECIALIDADES
 INSERT INTO especialidades (id_especialidad, nombre) VALUES
@@ -49,6 +70,15 @@ INSERT INTO especialidades (id_especialidad, nombre) VALUES
 
 INSERT INTO `medicos` (`COLEGIADO`,`imagEN`,`TARIFA`,`ID_USUARIO`, id_especialidad) VALUES ('11111111A','default.png',35,2,1);
 INSERT INTO `medicos` (`COLEGIADO`,`imagen`,`TARIFA`,`ID_USUARIO`, id_especialidad) VALUES ('11111112A','default.png',40,4,3);
+
+INSERT INTO `medicos` (`COLEGIADO`, `imagEN`, `TARIFA`, `ID_USUARIO`, `id_especialidad`) VALUES
+('COL1001', 'default.jpg', 60.00, 2, 1),
+('COL1002', 'default.jpg', 55.00, 3, 1),
+('COL1003', 'default.jpg', 65.00, 4, 1),
+('COL1004', 'default.jpg', 50.00, 5, 1),
+('COL1005', 'default.jpg', 70.00, 6, 3),
+('COL1006', 'default.jpg', 60.00, 7, 3),
+('COL1007', 'default.jpg', 75.00, 8, 3);
 
 -- TRATAMIENTOS
 INSERT INTO tratamientos (id_tratamiento, id_especialidad, nombre, descripcion) VALUES
@@ -145,22 +175,274 @@ INSERT INTO `clinica_especialidad` (`id_clinica`,`id_especialidad`) VALUES (4,15
 INSERT INTO `clinica_especialidad` (`id_clinica`,`id_especialidad`) VALUES (4,20);
 
 -- MEDICOS_TRATAMIENTOS
-INSERT INTO `medico_tratamientos` (`colegiado`,`id_tratamiento`) VALUES ('11111111A',1);
-INSERT INTO `medico_tratamientos` (`colegiado`,`id_tratamiento`) VALUES ('11111111A',2);
-INSERT INTO `medico_tratamientos` (`colegiado`,`id_tratamiento`) VALUES ('11111111A',3);
-INSERT INTO `medico_tratamientos` (`colegiado`,`id_tratamiento`) VALUES ('11111112A',11);
-INSERT INTO `medico_tratamientos` (`colegiado`,`id_tratamiento`) VALUES ('11111112A',12);
-INSERT INTO `medico_tratamientos` (`colegiado`,`id_tratamiento`) VALUES ('11111112A',13);
+INSERT INTO `medico_tratamientos` (`colegiado`,`id_tratamiento`) VALUES ('COL1001',1);
+INSERT INTO `medico_tratamientos` (`colegiado`,`id_tratamiento`) VALUES ('COL1001',2);
+INSERT INTO `medico_tratamientos` (`colegiado`,`id_tratamiento`) VALUES ('COL1001',3);
+
+INSERT INTO `medico_tratamientos` (`colegiado`,`id_tratamiento`) VALUES ('COL1002',1);
+INSERT INTO `medico_tratamientos` (`colegiado`,`id_tratamiento`) VALUES ('COL1002',2);
+INSERT INTO `medico_tratamientos` (`colegiado`,`id_tratamiento`) VALUES ('COL1002',4);
+
+INSERT INTO `medico_tratamientos` (`colegiado`,`id_tratamiento`) VALUES ('COL1003',1);
+INSERT INTO `medico_tratamientos` (`colegiado`,`id_tratamiento`) VALUES ('COL1003',2);
+INSERT INTO `medico_tratamientos` (`colegiado`,`id_tratamiento`) VALUES ('COL1003',5);
+
+
+INSERT INTO `medico_tratamientos` (`colegiado`,`id_tratamiento`) VALUES ('COL1004',1);
+INSERT INTO `medico_tratamientos` (`colegiado`,`id_tratamiento`) VALUES ('COL1004',2);
+INSERT INTO `medico_tratamientos` (`colegiado`,`id_tratamiento`) VALUES ('COL1004',4);
+
+INSERT INTO `medico_tratamientos` (`colegiado`,`id_tratamiento`) VALUES ('COL1005',11);
+INSERT INTO `medico_tratamientos` (`colegiado`,`id_tratamiento`) VALUES ('COL1005',12);
+INSERT INTO `medico_tratamientos` (`colegiado`,`id_tratamiento`) VALUES ('COL1005',13);
+
+INSERT INTO `medico_tratamientos` (`colegiado`,`id_tratamiento`) VALUES ('COL1006',11);
+INSERT INTO `medico_tratamientos` (`colegiado`,`id_tratamiento`) VALUES ('COL1006',12);
+INSERT INTO `medico_tratamientos` (`colegiado`,`id_tratamiento`) VALUES ('COL1006',14);
+
+INSERT INTO `medico_tratamientos` (`colegiado`,`id_tratamiento`) VALUES ('COL1007',11);
+INSERT INTO `medico_tratamientos` (`colegiado`,`id_tratamiento`) VALUES ('COL1007',12);
+INSERT INTO `medico_tratamientos` (`colegiado`,`id_tratamiento`) VALUES ('COL1007',15);
+
 
 -- HORARIOS_MEDICOS
-INSERT INTO `geomedicos_tfg`.`horarios_medicos` (`id_horario`, `COLEGIADO`, `fecha_cita`, `hora_inicio`, `estado`, `id_clinica`) VALUES (1, '11111111A', '2025-06-05', '9:00', 'PENDIENTE', '1');
-INSERT INTO `geomedicos_tfg`.`horarios_medicos` (`id_horario`, `COLEGIADO`, `fecha_cita`, `hora_inicio`, `estado`, `id_clinica`) VALUES (2, '11111111A', '2025-06-05', '10:00', 'PENDIENTE','1');
-INSERT INTO `geomedicos_tfg`.`horarios_medicos` (`id_horario`, `COLEGIADO`, `fecha_cita`, `hora_inicio`, `estado`, `id_clinica`) VALUES (3, '11111111A', '2025-06-05', '11:00', 'PENDIENTE','1');
-INSERT INTO `geomedicos_tfg`.`horarios_medicos` (`id_horario`, `COLEGIADO`, `fecha_cita`, `hora_inicio`, `estado`, `id_clinica`) VALUES (4, '11111111A', '2025-06-05', '12:00', 'PENDIENTE','1');
+INSERT INTO `geomedicos_tfg`.`horarios_medicos` (`COLEGIADO`, `fecha_cita`, `hora_inicio`, `estado`, `id_clinica`) VALUES
+('COL1001', '2025-07-01', '09:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-01', '10:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-01', '11:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-01', '12:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-02', '09:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-02', '10:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-02', '11:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-02', '12:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-03', '09:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-03', '10:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-03', '11:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-03', '12:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-04', '09:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-04', '10:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-04', '11:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-04', '12:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-08', '09:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-08', '10:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-08', '11:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-08', '12:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-09', '09:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-09', '10:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-09', '11:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-09', '12:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-10', '09:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-10', '10:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-10', '11:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-10', '12:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-11', '09:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-11', '10:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-11', '11:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-11', '12:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-15', '09:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-15', '10:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-15', '11:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-15', '12:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-16', '09:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-16', '10:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-16', '11:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-16', '12:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-17', '09:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-17', '10:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-17', '11:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-17', '12:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-18', '09:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-18', '10:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-18', '11:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-18', '12:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-22', '09:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-22', '10:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-22', '11:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-22', '12:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-23', '09:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-23', '10:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-23', '11:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-23', '12:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-24', '09:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-24', '10:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-24', '11:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-24', '12:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-25', '09:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-25', '10:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-25', '11:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-25', '12:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-29', '09:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-29', '10:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-29', '11:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-29', '12:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-30', '09:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-30', '10:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-30', '11:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-30', '12:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-31', '09:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-31', '10:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-31', '11:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-31', '12:00:00', 'PENDIENTE', 1);
+
+INSERT INTO `geomedicos_tfg`.`horarios_medicos` (`COLEGIADO`, `fecha_cita`, `hora_inicio`, `estado`, `id_clinica`) VALUES
+('COL1002', '2025-07-01', '09:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-01', '10:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-01', '11:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-01', '12:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-02', '09:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-02', '10:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-02', '11:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-02', '12:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-03', '09:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-03', '10:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-03', '11:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-03', '12:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-04', '09:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-04', '10:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-04', '11:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-04', '12:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-08', '09:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-08', '10:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-08', '11:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-08', '12:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-09', '09:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-09', '10:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-09', '11:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-09', '12:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-10', '09:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-10', '10:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-10', '11:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-10', '12:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-11', '09:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-11', '10:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-11', '11:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-11', '12:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-15', '09:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-15', '10:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-15', '11:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-15', '12:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-16', '09:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-16', '10:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-16', '11:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-16', '12:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-17', '09:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-17', '10:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-17', '11:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-17', '12:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-18', '09:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-18', '10:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-18', '11:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-18', '12:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-22', '09:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-22', '10:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-22', '11:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-22', '12:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-23', '09:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-23', '10:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-23', '11:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-23', '12:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-24', '09:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-24', '10:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-24', '11:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-24', '12:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-25', '09:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-25', '10:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-25', '11:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-25', '12:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-29', '09:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-29', '10:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-29', '11:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-29', '12:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-30', '09:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-30', '10:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-30', '11:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-30', '12:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-31', '09:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-31', '10:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-31', '11:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-31', '12:00:00', 'PENDIENTE', 1);
+
+INSERT INTO `geomedicos_tfg`.`horarios_medicos` (`COLEGIADO`, `fecha_cita`, `hora_inicio`, `estado`, `id_clinica`) VALUES
+('COL1003', '2025-07-01', '09:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-01', '10:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-01', '11:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-01', '12:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-02', '09:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-02', '10:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-02', '11:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-02', '12:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-03', '09:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-03', '10:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-03', '11:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-03', '12:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-04', '09:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-04', '10:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-04', '11:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-04', '12:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-08', '09:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-08', '10:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-08', '11:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-08', '12:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-09', '09:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-09', '10:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-09', '11:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-09', '12:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-10', '09:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-10', '10:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-10', '11:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-10', '12:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-11', '09:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-11', '10:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-11', '11:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-11', '12:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-15', '09:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-15', '10:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-15', '11:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-15', '12:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-16', '09:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-16', '10:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-16', '11:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-16', '12:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-17', '09:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-17', '10:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-17', '11:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-17', '12:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-18', '09:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-18', '10:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-18', '11:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-18', '12:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-22', '09:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-22', '10:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-22', '11:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-22', '12:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-23', '09:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-23', '10:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-23', '11:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-23', '12:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-24', '09:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-24', '10:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-24', '11:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-24', '12:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-25', '09:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-25', '10:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-25', '11:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-25', '12:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-29', '09:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-29', '10:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-29', '11:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-29', '12:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-30', '09:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-30', '10:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-30', '11:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-30', '12:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-31', '09:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-31', '10:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-31', '11:00:00', 'PENDIENTE', 1),
+('COL1003', '2025-07-31', '12:00:00', 'PENDIENTE', 1);
 
 -- CITAS
-INSERT INTO `geomedicos_tfg`.`citas` (`id_cita`, `id_paciente`, `id_horario`, `fecha`) VALUES (1, '3', '1', '2025-05-02');
-INSERT INTO `geomedicos_tfg`.`citas` (`id_cita`, `id_paciente`, `id_horario`, `fecha`) VALUES (2, '5', '3', '2025-04-05');
+INSERT INTO `geomedicos_tfg`.`citas` (`id_cita`, `id_paciente`, `id_horario`, `fecha`) VALUES (1, '9', '1', '2025-05-15');
+INSERT INTO `geomedicos_tfg`.`citas` (`id_cita`, `id_paciente`, `id_horario`, `fecha`) VALUES (2, '9', '83', '2025-04-05');
 
 
 -- enfermedades
