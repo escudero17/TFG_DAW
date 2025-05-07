@@ -207,7 +207,7 @@ INSERT INTO `medico_tratamientos` (`colegiado`,`id_tratamiento`) VALUES ('COL100
 
 -- HORARIOS_MEDICOS
 INSERT INTO `geomedicos_tfg`.`horarios_medicos` (`COLEGIADO`, `fecha_cita`, `hora_inicio`, `estado`, `id_clinica`) VALUES
-('COL1001', '2025-07-01', '09:00:00', 'PENDIENTE', 1),
+('COL1001', '2025-07-01', '09:00:00', 'CONFIRMADA', 1),
 ('COL1001', '2025-07-01', '10:00:00', 'PENDIENTE', 1),
 ('COL1001', '2025-07-01', '11:00:00', 'PENDIENTE', 1),
 ('COL1001', '2025-07-01', '12:00:00', 'PENDIENTE', 1),
@@ -291,7 +291,7 @@ INSERT INTO `geomedicos_tfg`.`horarios_medicos` (`COLEGIADO`, `fecha_cita`, `hor
 ('COL1002', '2025-07-01', '12:00:00', 'PENDIENTE', 1),
 ('COL1002', '2025-07-02', '09:00:00', 'PENDIENTE', 1),
 ('COL1002', '2025-07-02', '10:00:00', 'PENDIENTE', 1),
-('COL1002', '2025-07-02', '11:00:00', 'PENDIENTE', 1),
+('COL1002', '2025-07-02', '11:00:00', 'CONFIRMADA', 1),
 ('COL1002', '2025-07-02', '12:00:00', 'PENDIENTE', 1),
 ('COL1002', '2025-07-03', '09:00:00', 'PENDIENTE', 1),
 ('COL1002', '2025-07-03', '10:00:00', 'PENDIENTE', 1),
