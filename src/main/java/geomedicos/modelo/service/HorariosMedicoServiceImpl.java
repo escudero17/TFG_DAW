@@ -67,16 +67,17 @@ public class HorariosMedicoServiceImpl implements HorariosMedicoService{
 		}
 	}
 
-	@Override
-	public List<HorariosMedico> citasConFechamayorQue(String colegiado, LocalDate fechaInicio) {
-		// TODO Auto-generated method stub
-		return hrepo.findByMedicoColegiadoAndFechaCitaGreaterThan(colegiado, fechaInicio);
-	}
+
 
 	@Override
 	public List<HorariosMedico> getMedicosDisponiblesPorEspecialidadYFecha(int idEspecialidad, LocalDate fecha) {
 		// TODO Auto-generated method stub
 		return hrepo.findByMedicoEspecialidadIdEspecialidadAndFechaCitaGreaterThanAndEstado(idEspecialidad, fecha, EstadoCita.PENDIENTE);
+	}
+
+	@Override
+	public List<HorariosMedico> citasConFecha(String colegiado, LocalDate fechaInicio) {
+		return hrepo.findByMedicoColegiadoAndFechaCita(colegiado,fechaInicio);
 	}
 
 }

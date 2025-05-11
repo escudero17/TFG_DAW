@@ -2,6 +2,7 @@ package geomedicos.restcontroller;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import geomedicos.modelo.dto.CitaDetalladaDto;
 import geomedicos.modelo.dto.CitaDto;
 import geomedicos.modelo.dto.HorarioMedicoDto;
 import geomedicos.modelo.dto.MedicoDto;
@@ -46,7 +48,7 @@ public class MedicoRestController {
 	@GetMapping("/citasProgramadas")
 	public ResponseEntity<?> citasProgramadas(@RequestParam String  colegiado, @RequestParam LocalDate fechaInicio) {
 	//	ResponseEntity.status(200).body(MedicoDto.convertToMedicoDto(medico));
-		return ResponseEntity.status(200).body(HorarioMedicoDto.convertList(horarioserv.citasConFechamayorQue(colegiado, fechaInicio)));
+		return ResponseEntity.status(200).body(HorarioMedicoDto.convertList(horarioserv.citasConFecha(colegiado, fechaInicio)));
 		
 	}
 	
@@ -112,7 +114,14 @@ public class MedicoRestController {
 			return ResponseEntity.status(409).body(null);
 	}
 	
-	
-	
+	@GetMapping("/miscitas/{colegiado}")
+	public ResponseEntity<List<CitaDetalladaDto>> getCitasMedico(@PathVariable String colegiado) {
+    List<Cita> citas = citaserv.buscarCitaPorMedicoColegiado(colegiado);
+	List<CitaDetalladaDto> resultado = citas.stream()
+        .map(CitaDetalladaDto::fromEntity)
+        .collect(Collectors.toList());
+
+    return ResponseEntity.ok(resultado);
+}
 
 }

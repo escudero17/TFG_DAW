@@ -6,10 +6,6 @@ import java.util.List;
 import org.modelmapper.ModelMapper;
 
 import geomedicos.modelo.entities.Cita;
-import geomedicos.modelo.entities.HorariosMedico;
-import geomedicos.modelo.enumerados.EstadoCita;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

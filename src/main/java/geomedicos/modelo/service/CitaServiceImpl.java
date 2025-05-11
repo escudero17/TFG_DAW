@@ -81,4 +81,20 @@ public class CitaServiceImpl implements CitaService{
 		return crepo.findByHorariosMedicoMedicoColegiadoAndHorariosMedicoFechaCita(colegiado, fechaCita);
 	}
 
+	@Override
+	public boolean existeHorariosMedico(HorariosMedico horario) {
+	return crepo.existsByHorariosMedico(horario);
+	}
+
+	@Override
+	public List<Cita> buscarCitaPorMedicoColegiado(String colegiado) {
+	return crepo.findByMedicoColegiado(colegiado);
+	}
+
+	@Override
+	public boolean existeCitaDuplicada(int idUsuario, int idHorario, LocalDate fecha) {
+		
+		return crepo.existsByPacienteAndHorarioAndFecha(idUsuario,idHorario,fecha);
+	}
+
 }

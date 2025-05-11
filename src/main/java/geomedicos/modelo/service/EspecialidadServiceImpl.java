@@ -28,20 +28,29 @@ public class EspecialidadServiceImpl implements EspecialidadService{
 
 	@Override
 	public Especialidad insertOne(Especialidad entity) {
-		// TODO Auto-generated method stub
-		return null;
+		if (entity.getIdEspecialidad() != 0 && erepo.existsById(entity.getIdEspecialidad())) {
+		throw new IllegalArgumentException("La especialidad con ID " + entity.getIdEspecialidad() + " ya existe");
+	}
+	return erepo.save(entity);
 	}
 
 	@Override
 	public int updateOne(Especialidad entity) {
-		// TODO Auto-generated method stub
+		if (entity.getIdEspecialidad() == 0 && erepo.existsById(entity.getIdEspecialidad())) {
 		return 0;
+	}
+	erepo.save(entity);
+	return 1;
 	}
 
 	@Override
 	public int deleteOne(Integer claveId) {
-		// TODO Auto-generated method stub
-		return 0;
+		if (erepo.existsById(claveId)) {
+			erepo.deleteById(claveId);
+		return 1;
+	}
+	
+	return 0;
 	}
 
 	@Override

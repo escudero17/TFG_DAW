@@ -1,6 +1,9 @@
 package geomedicos.restcontroller;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,13 +16,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import geomedicos.modelo.dto.CitaDetalladaDto;
 import geomedicos.modelo.dto.CitaDto;
-import geomedicos.modelo.dto.HorarioMedicoDto;
 import geomedicos.modelo.entities.Cita;
 import geomedicos.modelo.entities.HorariosMedico;
 import geomedicos.modelo.enumerados.EstadoCita;
-import geomedicos.modelo.repository.CitaRepository;
-import geomedicos.modelo.repository.HorariosMedicoRepository;
 import geomedicos.modelo.service.CitaService;
 import geomedicos.modelo.service.HorariosMedicoService;
 import geomedicos.modelo.service.UsuarioService;
@@ -36,35 +37,51 @@ public class PacienteRestController {
 	@Autowired
 	private UsuarioService userv;
 	
-	@GetMapping("/miscitas/{idUsuario}")
-	public ResponseEntity<?> misCitas(@PathVariable int idUsuario){
-		return ResponseEntity.status(200).body(CitaDto.convertList(cserv.buscarCitasPorPaciente(idUsuario)));
-	}
+@GetMapping("/miscitas/{idUsuario}")
+public ResponseEntity<List<CitaDetalladaDto>> misCitas(@PathVariable int idUsuario) {
+    List<Cita> citas = cserv.buscarCitasPorPaciente(idUsuario); // <- devuelve entidades Cita
+
+    List<CitaDetalladaDto> resultado = citas.stream()
+        .map(CitaDetalladaDto::fromEntity)
+        .collect(Collectors.toList());
+
+    return ResponseEntity.ok(resultado);
+}
 	
-	
-	@PostMapping("/miscitas/alta")
-	public ResponseEntity<?> altaCita(@RequestBody CitaDto citadto){
-		
-			Cita cita = new Cita();
-			HorariosMedico horario = mserv.findById(citadto.getIdHorario());
-			cita.setFecha(LocalDate.now());
-			cita.setHorariosMedico(horario);
-			cita.setPaciente(userv.findById(citadto.getIdUsuario()));
-			horario.setEstado(EstadoCita.CONFIRMADA);
-			
-			
-			
-			if (cserv.insertOne(cita) != null) {
-				citadto.setIdCita(cita.getIdCita());
-				mserv.updateOne(horario);
-				return ResponseEntity.status(201).body(citadto);
-			}
-				
-			else
-				return ResponseEntity.status(409).body(null);
-		
-		
-	}
+@PostMapping("/miscitas/alta")
+public ResponseEntity<?> altaCita(@RequestBody CitaDto citadto){
+
+    Cita cita = new Cita();
+    HorariosMedico horario = mserv.findById(citadto.getIdHorario());
+
+    // Verificación: evitar doble reserva
+    if (horario.getEstado() == EstadoCita.CONFIRMADA) {
+        return ResponseEntity.status(409).body("Ese horario ya ha sido reservado.");
+    }
+
+	if (cserv.existeHorariosMedico(horario)) {
+    return ResponseEntity.status(409).body("Ya existe una cita para ese horario.");
+}
+
+boolean yaTieneCitaEseHorario = cserv.existeCitaDuplicada(citadto.getIdUsuario(),horario.getIdHorario(),horario.getFechaCita());
+
+    if (yaTieneCitaEseHorario) {
+        return ResponseEntity.status(409).body("Ya tienes una cita en ese horario.");
+    }
+
+    cita.setFecha(horario.getFechaCita());
+    cita.setHorariosMedico(horario);
+    cita.setPaciente(userv.findById(citadto.getIdUsuario()));
+    horario.setEstado(EstadoCita.CONFIRMADA);
+
+    if (cserv.insertOne(cita) != null) {
+        citadto.setIdCita(cita.getIdCita());
+        mserv.updateOne(horario);
+        return ResponseEntity.status(201).body(citadto);
+    } else {
+        return ResponseEntity.status(409).body(null);
+    }
+}
 	
 	@DeleteMapping("/miscitas/eliminar/{idCita}")
 	public ResponseEntity<?> eliminarCita(@PathVariable int idCita){

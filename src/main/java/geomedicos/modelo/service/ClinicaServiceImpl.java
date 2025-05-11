@@ -28,19 +28,28 @@ public class ClinicaServiceImpl implements ClinicaService{
 
 	@Override
 	public Clinica insertOne(Clinica entity) {
-		// TODO Auto-generated method stub
-		return null;
+		if (entity.getIdClinica() != 0 && crepo.existsById(entity.getIdClinica())) {
+		throw new IllegalArgumentException("La clínica con ID " + entity.getIdClinica() + " ya existe");
+	}
+	return crepo.save(entity);
 	}
 
 	@Override
 	public int updateOne(Clinica entity) {
-		// TODO Auto-generated method stub
+		if (entity.getIdClinica() == 0 && crepo.existsById(entity.getIdClinica())) {
 		return 0;
+	}
+	crepo.save(entity);
+	return 1;
 	}
 
 	@Override
 	public int deleteOne(Integer claveId) {
-		// TODO Auto-generated method stub
+		if ( crepo.existsById(claveId)) {
+		crepo.deleteById(claveId);
+		return 1;
+	}
+	
 		return 0;
 	}
 
